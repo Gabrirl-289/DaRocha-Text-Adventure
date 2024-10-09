@@ -4,16 +4,31 @@ using System.Numerics;
 using System.Runtime.Intrinsics.X86;
 using System.Security.Cryptography;
 using System.Threading.Tasks;
+using System.Runtime.InteropServices;
+using System.Diagnostics.Contracts;
 
 namespace Text_Adventure
 {
+    enum WeaponType
+    {
+        light,
+        key,
+        knife,
+
+    }
+    struct PlayerData
+    {
+        public int health;
+        public bool isAlive;
+        public string Pname;
+        public DateTime lastEditedl;
+    }
     internal class Program
     {
         static void Main(string[] args)
         {
             Console.Title = "welcome to purgatory";
-            int PlayerHealth = 100;
-            int error = 0;
+            int hp = 100;
             int nameOfVariable = 3, helloworld = 6; //
             float distanceToStore, howcoolDerekis = 10.5f; // numbers with a dot
             double inflation = 10.5863; //alot of numbers, 8 max
@@ -31,7 +46,9 @@ namespace Text_Adventure
             bool Knife = true;
             bool light = true;
             bool key = true;
-            string currentItem = "you have ";
+            string currentItem = "";
+           
+                   ///   Notes only     \\\
             //Console.WriteLine(thatscrazyagain);
             //Console.ReadKey(); this is for only one letter/number
 
@@ -44,12 +61,16 @@ namespace Text_Adventure
             //    case 'a':
             //        break;
             //}
+            // in case oyu remove the break. the code will go thought the case and in the next case until it breaks
+
 
             //Arithmetic operators +,-,*,/
             //+=, -=, *=, /=
             //++,--
 
             // &&, ||, !
+            
+            ///     end of notes area        \\\
 
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine(myname);
@@ -57,6 +78,13 @@ namespace Text_Adventure
             Console.WriteLine("second name");
             string sename = Console.ReadLine();
             Console.WriteLine("hello " + name + " " + sename);
+            PlayerData player1 = new()
+            {
+                Pname = name + " " + sename,
+                isAlive = true,
+                health = 100,
+
+            };
             try
             {
                 Console.WriteLine("how old are you?");
@@ -75,11 +103,12 @@ namespace Text_Adventure
 
 
             //   Console.ReadLine(); for multiple numbers or letter
-            //where code starts
+            //where code starts, part one
             string input = Console.ReadLine();
             while (true)
             {
-                if (input == "Knife")
+               
+                if (input == "Knife" || input == "knife")
                 {
                     Console.WriteLine("you grab the knife, as you do that you hear heavy steps ecoioing the halls, you cant see but its definately here, you are still handcuffed ");
                     Knife = false;
@@ -115,9 +144,10 @@ namespace Text_Adventure
                     input = Console.ReadLine();
                 }
             }
+            //while loop ends
             Console.ResetColor();
             Console.WriteLine(name + " what you wanna do?");
-
+            //if conditions of the player
             if (Handcuff)
             {
                 Console.WriteLine("you are still handcuffed");
@@ -126,6 +156,7 @@ namespace Text_Adventure
             {
                 Console.WriteLine("the door is locked");
             }
+            //other loop started
             while (true)
             {
                 if (input == "knife" && key)
@@ -141,7 +172,7 @@ namespace Text_Adventure
                     Console.WriteLine("Knife || key");
                 }
                 input = Console.ReadLine();
-                //player second choices
+                //player second choices of item
                 if (input == "light" && light && Knife)
                 {
                     Console.WriteLine("you grab the Flashlight and now you can see the room, when you turn to the knife, you realize the knife dissapeared, seems like you wont be able to protect yourself");
@@ -194,8 +225,9 @@ namespace Text_Adventure
                 }
                 Console.Beep(1000, 100);
             }
-            Console.Title = "";
-            Console.WriteLine(currentItem);
+          
+            Console.Title = "we just started";
+            listItems(currentItem);
             Console.ForegroundColor = ConsoleColor.DarkBlue;
             if (light == false)
             {
@@ -204,6 +236,95 @@ namespace Text_Adventure
             else {
                 Console.WriteLine("you hears steps towards your cell but them the you hear the step leaving, you might be alone now");
             }
+            // void to check player items
+            static void listItems(string itemName)
+            {
+                Console.WriteLine("current items: " + itemName);
+            }
+
+            Console.ResetColor();
+            Console.Beep(1000,1000);
+            Console.Beep(2114,100);
+            Console.ForegroundColor = ConsoleColor.Yellow;
+          //part 2 begins (i will make the game 3 parts only)
+            Console.WriteLine("you can check your items anytime");
+            Console.ResetColor();
+            Console.WriteLine(player1.Pname);
+            Console.WriteLine("what you wanna do?");
+            Console.WriteLine("options: punch the door  || sing || wait || check items");
+            Console.Beep(14026, 1000);
+            Console.Beep(700, 1000);
+            Console.Beep(2114, 100);
+            Console.Beep(1000, 100);
+            Console.Beep(2114, 100);
+            Console.Beep(1000, 100);
+            Console.Beep(2114, 100);
+            while (true) 
+            {
+                input = Console.ReadLine();
+                if (input == "punch the door")
+                {
+                    hp = hp - 1;
+                    Console.WriteLine("you hurt yourself, dummy, -1 hp");
+                    Console.WriteLine("current hp: " + hp);
+                    Console.WriteLine("the door magically opens");
+                    break;
+                }
+                else if (input == "check items")
+                {
+                    Console.WriteLine(currentItem);
+                    Console.Beep(1000, 100);
+                    continue;
+                }
+                else
+                {
+                    Console.WriteLine("anyways,door magically opens");
+                    break ;
+                }
+            }
+            if (input == "sing")
+            {
+                Console.WriteLine("you are a terrible singer");
+                Console.ForegroundColor= ConsoleColor.Yellow;
+                Console.WriteLine("dont do again");
+                Console.ResetColor();
+            }
+            Console.WriteLine("you leave the room");
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("press anything to continues");
+            Console.ResetColor();
+            Console.ReadKey();
+            Console.Beep(1000, 100);
+            //this is where phase 2 starts
+            Console.Clear();
+            Console.Title = "part 2";
+            Console.WriteLine("you left the cell, you are now walking thought dark corridors,there are alot of cells just like yours, definately this is a jail");
+            if (light == false)
+            {
+                Console.WriteLine("you use the Flashlight to see, everything is more clear for you now");
+            }
+            Console.WriteLine("");
+            Console.WriteLine("you found stairs, up and down");
+            Console.WriteLine("what you wanna do? ");
+            Console.WriteLine("Up || down");
+            while (true)
+            {
+                input = Console.ReadLine();
+                if (input == "up")
+                {
+
+                }
+                else if (input == "down")
+                {
+
+                }
+                else 
+                {
+                    Console.WriteLine("not a option");
+                } 
+            }
+
+
         }
     }
 }
