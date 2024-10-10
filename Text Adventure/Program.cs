@@ -6,14 +6,16 @@ using System.Security.Cryptography;
 using System.Threading.Tasks;
 using System.Runtime.InteropServices;
 using System.Diagnostics.Contracts;
+using System.Xml.Linq;
+using System.Security.AccessControl;
 
 namespace Text_Adventure
 {
-    enum WeaponType
+    enum illuminationType
     {
         light,
-        key,
-        knife,
+        flashlight,
+        illumination,
 
     }
     struct PlayerData
@@ -35,6 +37,7 @@ namespace Text_Adventure
             string myword = "you are handcuffed"; //a whole sentence
             char myCharacterOrletter = 'A'; //only a word
             bool vgd = true;
+            bool singer = true;
             nameOfVariable = 10;
             nameOfVariable = 16;
             float lessinflation = (float)inflation;
@@ -47,8 +50,9 @@ namespace Text_Adventure
             bool light = true;
             bool key = true;
             string currentItem = "";
-           
-                   ///   Notes only     \\\
+            bool doorknowledge = true;
+
+            ///   Notes only     \\\
             //Console.WriteLine(thatscrazyagain);
             //Console.ReadKey(); this is for only one letter/number
 
@@ -69,7 +73,7 @@ namespace Text_Adventure
             //++,--
 
             // &&, ||, !
-            
+
             ///     end of notes area        \\\
 
             Console.ForegroundColor = ConsoleColor.Red;
@@ -110,14 +114,14 @@ namespace Text_Adventure
                
                 if (input == "Knife" || input == "knife")
                 {
-                    Console.WriteLine("you grab the knife, as you do that you hear heavy steps ecoioing the halls, you cant see but its definately here, you are still handcuffed ");
+                    Console.WriteLine("you grab the knife, as you do that you hear heavy steps echoing the halls, you cant see but its definately here, you are still handcuffed ");
                     Knife = false;
                     currentItem = currentItem + "knife |";
                     break;
                 }
                 else if (input == "key")
                 {
-                    Console.WriteLine("you use to uncoff yourself, as you do that you hear heavy steps ecoioing the halls, you cant see but its definately here ");
+                    Console.WriteLine("you use to uncoff yourself, as you do that you hear heavy steps echoing the halls, you cant see but its definately here ");
                     Handcuff = false;
                     key = false;
                     currentItem = currentItem + "key |";
@@ -133,7 +137,7 @@ namespace Text_Adventure
                     Console.ForegroundColor= ConsoleColor.Red;
                     Console.WriteLine("yet");
                     light = false;
-                    Console.Beep(100, 1000);
+                    Console.Beep(125, 3000);
                     currentItem = currentItem + "Flashlight |";
                     
                     break;
@@ -255,10 +259,6 @@ namespace Text_Adventure
             Console.Beep(14026, 1000);
             Console.Beep(700, 1000);
             Console.Beep(2114, 100);
-            Console.Beep(1000, 100);
-            Console.Beep(2114, 100);
-            Console.Beep(1000, 100);
-            Console.Beep(2114, 100);
             while (true) 
             {
                 input = Console.ReadLine();
@@ -306,25 +306,126 @@ namespace Text_Adventure
             Console.WriteLine("");
             Console.WriteLine("you found stairs, up and down");
             Console.WriteLine("what you wanna do? ");
-            Console.WriteLine("Up || down");
+            Console.WriteLine("Up || down || sing || check items");
+            //2 places that will gave an ending
             while (true)
             {
                 input = Console.ReadLine();
                 if (input == "up")
                 {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("you decided to go up");
+                    Console.ResetColor();
+                    Console.WriteLine("after reaching the next floor, when you look back, what was once the stairs hade become a simple wall");
+
+                    if (light == false)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.WriteLine("the place is dark but luckly you have a flashlight");
+                        Console.WriteLine("the walls are white, there are some wheelchairs and medical equipaments scattered around");
+                        Console.ResetColor();
+                    }
+                    else
+                    {
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.WriteLine("the place is dark, its hard to understand where you are, you stumble in some wheelchairs");
+                        Console.ResetColor();
+
+                    }
+                    Console.WriteLine("press anything to continue");
+                    Console.ReadKey();
+                    Console.Clear();
+                    //part 2 final begin
+                    Console.Title = "part 2 up";
+                    Console.WriteLine("you keep walking thought this misterious place");
+                    Console.WriteLine("you find a door locked, it requires a pass code");
+                    Console.WriteLine("what you wanna do?");
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.WriteLine("Check nearby rooms || sing || Look closer at the door");
+                    while (true)
+                    {
+                        input = Console.ReadLine();
+                        if (input == "sing" && light)
+                        {
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine("dont do again");
+                            Console.ResetColor();
+                        }
+                        else if (input == "sing" && !light)
+                        {
+                            Console.WriteLine("i warned you");
+                            Console.Clear();
+                            Console.WriteLine("sudently the ground started to shake and everything falls");
+                            hp = 0;
+                            break;
+                        }
+                        else if (input == "Check nearby rooms")
+                        {
+                            Console.WriteLine("you enter the nearby rooms, you notice some things scatered and a paper");
+                            Console.WriteLine("when you look at the paper there is a message:");
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            Console.WriteLine("this place, has no sense, its like a combination of everything, theres so many floors, each with different settings,");
+                            Console.WriteLine("code: 5 - - 0,the lasts 2 digits are on the scariest room down the stairs");
+                            Console.ResetColor();
+                            Console.WriteLine("press anything to continue");
+                            Console.ReadKey(true);
+                            Console.WriteLine("");
+                            doorknowledge = false;
+
+                        }
+                        else if (input == " Look closer at the door")
+                        {
+                            Console.WriteLine("you look closer at the door, you see a  digit password code");
+                            Console.WriteLine();
+                            Thread.Sleep(1000);
+                            
+                        }
+                        
+                        else
+                        {
+                            Console.WriteLine("not a option");
+                        }
+
+                    }
 
                 }
-                else if (input == "down")
+                else if (input == "down" )
                 {
-
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("you decided to go down");
                 }
-                else 
+                else if (input == "sing")
+                {
+                   //this is for a secret ending
+                    Console.WriteLine("if you sing again you will suffer consequences...");
+                    singer = false;
+                    Console.Beep(400, 1000);
+                }
+                else if (input == "check items")
+                {
+                    Console.WriteLine(currentItem);
+                }
+                
+                else
                 {
                     Console.WriteLine("not a option");
-                } 
+                }
+
+                if (hp <= 0)
+                {
+                    Console.Title = "end";
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("you died, you couldt scape. there is no turning back now. preass anything to end game");
+                    Console.ResetColor();
+                    Console.ReadKey();
+                    Console.Clear();
+                    break;
+                }
+                
+            
+
             }
-
-
+        
         }
     }
 }
