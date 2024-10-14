@@ -107,7 +107,7 @@ namespace Text_Adventure
             Console.WriteLine("you are locked in what looks like a prison, it's too dark, your hands are cuffed,");
             Console.WriteLine("there is a knife on the table, a key on the ground and a light on the bed");
             Console.WriteLine("knife|key|light");
-
+            
 
             //   Console.ReadLine(); for multiple numbers or letter
             //where code starts, part one
@@ -232,7 +232,7 @@ namespace Text_Adventure
                 }
                 Console.Beep(1000, 100);
             }
-          
+          //note the title changing + shows curent item
             Console.Title = "we just started";
             listItems(currentItem);
             Console.ForegroundColor = ConsoleColor.DarkBlue;
@@ -248,7 +248,7 @@ namespace Text_Adventure
             {
                 Console.WriteLine("current items: " + itemName);
             }
-
+            //some beep sounds and reset collor function
             Console.ResetColor();
             Console.Beep(1000,1000);
             Console.Beep(2114,100);
@@ -397,7 +397,7 @@ namespace Text_Adventure
                     //end of the up part
                     switch(true) //for grades
                     {
-                        case false:
+                        case false: // the case will never appear in the game because its a false statment over a switch stated to be true, its just a easter egg
                             Console.WriteLine("derek will gave me extra points");
                             break;
                     }
@@ -449,7 +449,11 @@ namespace Text_Adventure
                             Console.WriteLine("you begin running for your life");
                             Thread.Sleep(1000);
                             Console.WriteLine("what you wanna do?");
-                            Console.WriteLine("keep running || find a spot to hide || ");
+                            Console.WriteLine("keep running || find a spot to hide");
+                            if (key == false)
+                            {
+                                Console.WriteLine("throw some boxes");
+                            }
                         }
                         else if (input == "flashlight" && light == false)
                         {
@@ -493,8 +497,7 @@ namespace Text_Adventure
                     Console.ReadKey(true);
                     Console.Clear();
                     break;
-                }
-                
+                } 
             
 
             }
