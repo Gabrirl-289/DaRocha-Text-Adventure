@@ -8,15 +8,16 @@ using System.Runtime.InteropServices;
 using System.Diagnostics.Contracts;
 using System.Xml.Linq;
 using System.Security.AccessControl;
+using System.Reflection.Metadata;
+using System;
 
 namespace Text_Adventure
 {
-    enum illuminationType
+    enum Lighttype
     {
         light,
         flashlight,
         illumination,
-
     }
     struct PlayerData
     {
@@ -32,7 +33,7 @@ namespace Text_Adventure
             Console.Title = "welcome to purgatory";
             int hp = 100;
             int nameOfVariable = 3, helloworld = 6; //
-            float distanceToStore, howcoolDerekis = 10.5f; // numbers with a dot
+            float distanceToStore, howcoolDerekis = -10.5f; // numbers with a dot
             double inflation = 10.5863; //alot of numbers, 8 max
             string myword = "you are handcuffed"; //a whole sentence
             char myCharacterOrletter = 'A'; //only a word
@@ -51,6 +52,7 @@ namespace Text_Adventure
             bool key = true;
             string currentItem = "";
             bool doorknowledge = true;
+            Lighttype lights = Lighttype.light;
 
             ///   Notes only     \\\
             //Console.WriteLine(thatscrazyagain);
@@ -79,9 +81,9 @@ namespace Text_Adventure
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine(myname);
             string name = Console.ReadLine();
-            Console.WriteLine("second name");
+            Console.WriteLine("second name"); 
             string sename = Console.ReadLine();
-            Console.WriteLine("hello " + name + " " + sename);
+            Console.WriteLine("hello ");
             PlayerData player1 = new()
             {
                 Pname = name + " " + sename,
@@ -89,6 +91,7 @@ namespace Text_Adventure
                 health = 100,
 
             };
+            Console.WriteLine(player1.Pname);
             try
             {
                 Console.WriteLine("how old are you?");
@@ -293,7 +296,7 @@ namespace Text_Adventure
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine("press anything to continues");
             Console.ResetColor();
-            Console.ReadKey();
+            Console.ReadKey(true);
             Console.Beep(1000, 100);
             //this is where phase 2 starts
             Console.Clear();
@@ -334,7 +337,7 @@ namespace Text_Adventure
                     }
                     Console.WriteLine("press anything to continue");
                     Console.ReadKey();
-                    Console.Clear();
+                    Console.Clear(); 
                     //part 2 final begin
                     Console.Title = "part 2 up";
                     Console.WriteLine("you keep walking thought this misterious place");
@@ -342,18 +345,20 @@ namespace Text_Adventure
                     Console.WriteLine("what you wanna do?");
                     Console.ForegroundColor = ConsoleColor.Yellow;
                     Console.WriteLine("Check nearby rooms || sing || Look closer at the door");
+                   //start of the up part
                     while (true)
                     {
                         input = Console.ReadLine();
-                        if (input == "sing" && light)
+                        if (input == "sing" && singer == true)
                         {
                             Console.ForegroundColor = ConsoleColor.Red;
                             Console.WriteLine("dont do again");
                             Console.ResetColor();
                         }
-                        else if (input == "sing" && !light)
+                        else if (input == "sing" && singer == false)
                         {
                             Console.WriteLine("i warned you");
+                            Thread.Sleep(1000);
                             Console.Clear();
                             Console.WriteLine("sudently the ground started to shake and everything falls");
                             hp = 0;
@@ -369,15 +374,17 @@ namespace Text_Adventure
                             Console.ResetColor();
                             Console.WriteLine("press anything to continue");
                             Console.ReadKey(true);
-                            Console.WriteLine("");
+                            Console.WriteLine("when you come back to the hall with the door code you realize the stairs are back");
+                            Thread.Sleep(1000);
                             doorknowledge = false;
+                            break;
 
                         }
-                        else if (input == " Look closer at the door")
+                        else if (input == "Look closer at the door")
                         {
-                            Console.WriteLine("you look closer at the door, you see a  digit password code");
-                            Console.WriteLine();
-                            Thread.Sleep(1000);
+                            Console.WriteLine("you look closer at the door, you see a 4 digit password code");
+                            Console.WriteLine("wanna check nearby rooms now?");
+                           // Thread.Sleep(1000);
                             
                         }
                         
@@ -387,12 +394,78 @@ namespace Text_Adventure
                         }
 
                     }
-
+                    //end of the up part
+                    switch(true) //for grades
+                    {
+                        case false:
+                            Console.WriteLine("derek will gave me extra points");
+                            break;
+                    }
                 }
-                else if (input == "down" )
+                //begining of the down part
+                else if (input == "down" || doorknowledge == false)
                 {
+                    Thread.Sleep(1000);
+                    Console.Clear();
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("you decided to go down");
+                    Console.ResetColor ();
+                    Console.WriteLine("as you go all the way down. you realize the stairs dissapeared, there is no turning back now");
+                    Thread.Sleep(1000);
+                    Console.WriteLine("you find yourself in a room filled with boxes and dust, its like a armazenament room, but it is huge");
+                    Console.WriteLine("after some time walking, you hear steps...something is definately here");
+                    Thread.Sleep (1000);
+                    Console.WriteLine("what you wanna do?");
+                    Console.WriteLine("hide|keep walking");
+                    if (light == false)
+                    {
+                        Console.WriteLine("use flashlight");
+                    }
+                    while (true) //currently working on it 
+                    {
+                        input = Console.ReadLine();
+                        if (input == "hide")
+                        {
+                            Console.WriteLine("you decided to hide");
+                            Console.WriteLine("press anything to continue");
+                            Console.ReadKey(true);
+                            Console.Clear ();
+                            Console.WriteLine("you hide inside one of the boxes, as you keep hidden, you notice a shadow passing thought your hiding spot.");
+                            Console.ForegroundColor= ConsoleColor.Red;
+                            Console.WriteLine("something definately is near");
+                            Console.ResetColor();
+                        } 
+                        else if (input == "keep walking")
+                        {
+                            Console.WriteLine("you decided to keep walking");
+                            Console.WriteLine("press anything to continue");
+                            Console.ReadKey(true);
+                            Console.Clear();
+                            Console.WriteLine("you keep exploring the place suddently you hear the quick steps behind you");
+                            Console.WriteLine("when you look back you see a human with a sword in wires");
+                            Console.WriteLine("he charges an attack on you and he hits");
+                            hp = hp - 33;
+                            Console.WriteLine("current hp: " + hp);
+                            Console.WriteLine("you begin running for your life");
+                            Thread.Sleep(1000);
+                            Console.WriteLine("what you wanna do?");
+                            Console.WriteLine("keep running || find a spot to hide || ");
+                        }
+                        else if (input == "flashlight" && light == false)
+                        {
+                            Console.WriteLine("you use the flashlight to see your surroundings");
+                            Console.WriteLine("press anything to continue");
+                            Console.ReadKey(true);
+                            Console.Clear();
+                            Console.WriteLine("you see that same person again, still holding the sword with wires he began running towards you");
+                            Console.WriteLine(player1.Pname + ", what you wanna do?");
+                        }
+                        else
+                        {
+                            Console.WriteLine("not an option");
+                        }
+                    }
+                    //end of down part
                 }
                 else if (input == "sing")
                 {
@@ -405,19 +478,19 @@ namespace Text_Adventure
                 {
                     Console.WriteLine(currentItem);
                 }
-                
+                //this is for the UP and down option
                 else
                 {
                     Console.WriteLine("not a option");
                 }
-
+                //ded
                 if (hp <= 0)
                 {
                     Console.Title = "end";
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("you died, you couldt scape. there is no turning back now. preass anything to end game");
                     Console.ResetColor();
-                    Console.ReadKey();
+                    Console.ReadKey(true);
                     Console.Clear();
                     break;
                 }
