@@ -30,6 +30,7 @@ namespace Text_Adventure
     {
         static void Main(string[] args)
         {
+            Lighttype lighttype = Lighttype.flashlight;
             Console.Title = "welcome to purgatory";
             int hp = 100;
             int nameOfVariable = 3, helloworld = 6; //
@@ -52,7 +53,13 @@ namespace Text_Adventure
             bool key = true;
             string currentItem = "";
             bool doorknowledge = true;
+            bool TrueEnding = true;
             Lighttype lights = Lighttype.light;
+
+            if (lights == Lighttype.flashlight)
+            {
+                //do somehting
+            }
 
             ///   Notes only     \\\
             //Console.WriteLine(thatscrazyagain);
@@ -423,8 +430,8 @@ namespace Text_Adventure
                     }
                     while (true) //currently working on it 
                     {
-                        input = Console.ReadLine();
-                        if (input == "hide")
+                        input = Console.ReadLine(); 
+                        if (input == "hide") //WORNK ON THIS FIRST
                         {
                             Console.WriteLine("you decided to hide");
                             Console.WriteLine("press anything to continue");
@@ -434,6 +441,41 @@ namespace Text_Adventure
                             Console.ForegroundColor= ConsoleColor.Red;
                             Console.WriteLine("something definately is near");
                             Console.ResetColor();
+                            Thread.Sleep(1000);
+                            Console.WriteLine("what you wanna do?");
+                            Console.WriteLine("leave hideout || keep hidden");
+                            if (light == false)
+                            {
+                                Console.WriteLine("use flashlight");
+                            }
+                            while (true)
+                            {
+                                input = Console.ReadLine();
+                                if (input == "leave hideout")
+                                {
+                                    input = "keep walking";
+                                    break;
+                                }
+                                else if (input == "keep hidden")
+                                {
+                                    Console.WriteLine("nothing happens, you just stay hidden");
+                                    Console.WriteLine("what you wanna do now?");
+                                    Console.WriteLine("leave hideout || keep hidden");
+                                    if (light == false)
+                                    {
+                                        Console.WriteLine("use flashlight");
+                                    }
+                                }
+                                else if (input == "use flashlight" && light == false)
+                                {
+                                    input = "flashlight";
+                                    break;
+                                }
+                                else
+                                {
+                                    Console.WriteLine("not a option");
+                                }
+                            }
                         } 
                         else if (input == "keep walking")
                         {
@@ -444,7 +486,8 @@ namespace Text_Adventure
                             Console.WriteLine("you keep exploring the place suddently you hear the quick steps behind you");
                             Console.WriteLine("when you look back you see a human with a sword in wires");
                             Console.WriteLine("he charges an attack on you and he hits");
-                            hp = hp - 33;
+                            //hp = hp - 33;
+                            hp -= 33;
                             Console.WriteLine("current hp: " + hp);
                             Console.WriteLine("you begin running for your life");
                             Thread.Sleep(1000);
@@ -453,6 +496,23 @@ namespace Text_Adventure
                             if (key == false)
                             {
                                 Console.WriteLine("throw some boxes");
+                            }
+                            while (true)
+                            {
+                                input = Console.ReadLine();
+                                if (input == "keep running")
+                                {
+                                    Console.WriteLine("he reaches you");
+                                    if (Knife == false)
+                                    {
+                                        Console.WriteLine("you knife the guy allowing yourself to scape, but you lost your knife");
+                                    }
+
+                                }
+                                else if (input == "find a spot t ")
+                                {
+
+                                }
                             }
                         }
                         else if (input == "flashlight" && light == false)
@@ -497,8 +557,14 @@ namespace Text_Adventure
                     Console.ReadKey(true);
                     Console.Clear();
                     break;
+                    trueending(player1.Pname);
                 } 
-            
+        static void trueending(string named)
+                {
+                    Thread.Sleep(1000);
+                    Console.Clear();
+                    Console.WriteLine("you reached the end " + named);
+                }
 
             }
         
