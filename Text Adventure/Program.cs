@@ -1,15 +1,5 @@
-﻿using static System.Net.Mime.MediaTypeNames;
-using System.Diagnostics.Metrics;
-using System.Numerics;
-using System.Runtime.Intrinsics.X86;
-using System.Security.Cryptography;
-using System.Threading.Tasks;
-using System.Runtime.InteropServices;
-using System.Diagnostics.Contracts;
-using System.Xml.Linq;
-using System.Security.AccessControl;
-using System.Reflection.Metadata;
-using System;
+﻿using System.Runtime.InteropServices;
+using System.Threading;
 
 namespace Text_Adventure
 {
@@ -17,7 +7,9 @@ namespace Text_Adventure
     {
         light,
         flashlight,
-        illumination,
+        lightBulb,
+        lighter,
+        magic,
     }
     struct PlayerData
     {
@@ -51,14 +43,16 @@ namespace Text_Adventure
             bool Knife = true;
             bool light = true;
             bool key = true;
+            string[] somelight;
+            somelight = new string[] { "lights", "Light", "light", "flashlight"};
             string currentItem = "";
             bool doorknowledge = true;
+            bool lifeline = true;
             bool TrueEnding = true;
             Lighttype lights = Lighttype.light;
-
             if (lights == Lighttype.flashlight)
             {
-                //do somehting
+                Console.WriteLine("gave me points");
             }
 
             ///   Notes only     \\\
@@ -88,7 +82,7 @@ namespace Text_Adventure
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine(myname);
             string name = Console.ReadLine();
-            Console.WriteLine("second name"); 
+            Console.WriteLine("second name");
             string sename = Console.ReadLine();
             Console.WriteLine("hello ");
             PlayerData player1 = new()
@@ -114,14 +108,14 @@ namespace Text_Adventure
             Console.WriteLine("you are locked in what looks like a prison, it's too dark, your hands are cuffed,");
             Console.WriteLine("there is a knife on the table, a key on the ground and a light on the bed");
             Console.WriteLine("knife|key|light");
-            
+
 
             //   Console.ReadLine(); for multiple numbers or letter
             //where code starts, part one
             string input = Console.ReadLine();
             while (true)
             {
-               
+
                 if (input == "Knife" || input == "knife")
                 {
                     Console.WriteLine("you grab the knife, as you do that you hear heavy steps echoing the halls, you cant see but its definately here, you are still handcuffed ");
@@ -144,12 +138,12 @@ namespace Text_Adventure
                     Console.WriteLine("RUN");
                     Console.ResetColor();
                     Console.WriteLine("for your luck, your cell is locked, he cant come in");
-                    Console.ForegroundColor= ConsoleColor.Red;
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("yet");
                     light = false;
                     Console.Beep(125, 3000);
                     currentItem = currentItem + "Flashlight |";
-                    
+
                     break;
                 }
                 else
@@ -239,7 +233,7 @@ namespace Text_Adventure
                 }
                 Console.Beep(1000, 100);
             }
-          //note the title changing + shows curent item
+            //note the title changing + shows curent item
             Console.Title = "we just started";
             listItems(currentItem);
             Console.ForegroundColor = ConsoleColor.DarkBlue;
@@ -247,7 +241,8 @@ namespace Text_Adventure
             {
                 Console.WriteLine("you see the human passing thought the corredor ignoring you and going elsewhere");
             }
-            else {
+            else
+            {
                 Console.WriteLine("you hears steps towards your cell but them the you hear the step leaving, you might be alone now");
             }
             // void to check player items
@@ -257,10 +252,10 @@ namespace Text_Adventure
             }
             //some beep sounds and reset collor function
             Console.ResetColor();
-            Console.Beep(1000,1000);
-            Console.Beep(2114,100);
+            Console.Beep(1000, 1000);
+            Console.Beep(2114, 100);
             Console.ForegroundColor = ConsoleColor.Yellow;
-          //part 2 begins (i will make the game 3 parts only)
+            //part 2 begins (i will make the game 3 parts only)
             Console.WriteLine("you can check your items anytime");
             Console.ResetColor();
             Console.WriteLine(player1.Pname);
@@ -269,7 +264,7 @@ namespace Text_Adventure
             Console.Beep(14026, 1000);
             Console.Beep(700, 1000);
             Console.Beep(2114, 100);
-            while (true) 
+            while (true)
             {
                 input = Console.ReadLine();
                 if (input == "punch the door")
@@ -289,13 +284,13 @@ namespace Text_Adventure
                 else
                 {
                     Console.WriteLine("anyways,door magically opens");
-                    break ;
+                    break;
                 }
             }
             if (input == "sing")
             {
                 Console.WriteLine("you are a terrible singer");
-                Console.ForegroundColor= ConsoleColor.Yellow;
+                Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine("dont do again");
                 Console.ResetColor();
             }
@@ -344,7 +339,7 @@ namespace Text_Adventure
                     }
                     Console.WriteLine("press anything to continue");
                     Console.ReadKey();
-                    Console.Clear(); 
+                    Console.Clear();
                     //part 2 final begin
                     Console.Title = "part 2 up";
                     Console.WriteLine("you keep walking thought this misterious place");
@@ -352,7 +347,7 @@ namespace Text_Adventure
                     Console.WriteLine("what you wanna do?");
                     Console.ForegroundColor = ConsoleColor.Yellow;
                     Console.WriteLine("Check nearby rooms || sing || Look closer at the door");
-                   //start of the up part
+                    //start of the up part
                     while (true)
                     {
                         input = Console.ReadLine();
@@ -391,10 +386,10 @@ namespace Text_Adventure
                         {
                             Console.WriteLine("you look closer at the door, you see a 4 digit password code");
                             Console.WriteLine("wanna check nearby rooms now?");
-                           // Thread.Sleep(1000);
-                            
+                            // Thread.Sleep(1000);
+
                         }
-                        
+
                         else
                         {
                             Console.WriteLine("not a option");
@@ -402,7 +397,7 @@ namespace Text_Adventure
 
                     }
                     //end of the up part
-                    switch(true) //for grades
+                    switch (true) //for grades
                     {
                         case false: // the case will never appear in the game because its a false statment over a switch stated to be true, its just a easter egg
                             Console.WriteLine("derek will gave me extra points");
@@ -416,12 +411,12 @@ namespace Text_Adventure
                     Console.Clear();
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("you decided to go down");
-                    Console.ResetColor ();
+                    Console.ResetColor();
                     Console.WriteLine("as you go all the way down. you realize the stairs dissapeared, there is no turning back now");
                     Thread.Sleep(1000);
                     Console.WriteLine("you find yourself in a room filled with boxes and dust, its like a armazenament room, but it is huge");
                     Console.WriteLine("after some time walking, you hear steps...something is definately here");
-                    Thread.Sleep (1000);
+                    Thread.Sleep(1000);
                     Console.WriteLine("what you wanna do?");
                     Console.WriteLine("hide|keep walking");
                     if (light == false)
@@ -430,15 +425,15 @@ namespace Text_Adventure
                     }
                     while (true) //currently working on it 
                     {
-                        input = Console.ReadLine(); 
+                        input = Console.ReadLine();
                         if (input == "hide") //WORNK ON THIS FIRST
                         {
                             Console.WriteLine("you decided to hide");
                             Console.WriteLine("press anything to continue");
                             Console.ReadKey(true);
-                            Console.Clear ();
+                            Console.Clear();
                             Console.WriteLine("you hide inside one of the boxes, as you keep hidden, you notice a shadow passing thought your hiding spot.");
-                            Console.ForegroundColor= ConsoleColor.Red;
+                            Console.ForegroundColor = ConsoleColor.Red;
                             Console.WriteLine("something definately is near");
                             Console.ResetColor();
                             Thread.Sleep(1000);
@@ -461,10 +456,13 @@ namespace Text_Adventure
                                     Console.WriteLine("nothing happens, you just stay hidden");
                                     Console.WriteLine("what you wanna do now?");
                                     Console.WriteLine("leave hideout || keep hidden");
+                                    
                                     if (light == false)
                                     {
                                         Console.WriteLine("use flashlight");
                                     }
+                                    input = Console.ReadLine();
+                                    if (input == "leave hideout");
                                 }
                                 else if (input == "use flashlight" && light == false)
                                 {
@@ -476,7 +474,7 @@ namespace Text_Adventure
                                     Console.WriteLine("not a option");
                                 }
                             }
-                        } 
+                        }
                         else if (input == "keep walking")
                         {
                             Console.WriteLine("you decided to keep walking");
@@ -492,7 +490,7 @@ namespace Text_Adventure
                             Console.WriteLine("you begin running for your life");
                             Thread.Sleep(1000);
                             Console.WriteLine("what you wanna do?");
-                            Console.WriteLine("keep running || find a spot to hide");
+                            Console.WriteLine("keep running || hide");
                             if (key == false)
                             {
                                 Console.WriteLine("throw some boxes");
@@ -503,17 +501,53 @@ namespace Text_Adventure
                                 if (input == "keep running")
                                 {
                                     Console.WriteLine("he reaches you");
-                                    if (Knife == false)
+                                    
+                                    if (Knife == true)
+                                    {
+                                        Console.WriteLine("he hits you");
+                                        hp -= 33;
+                                        Console.WriteLine("curret hp = " + hp);
+                                        Console.WriteLine("lucklily you find a door and you enter immediately and the door autom");
+                                        if (hp <= 0) {  
+                                            lifeline = false;
+                                            break;
+                                        }
+
+                                    }
+                                    else if (Knife == false)
                                     {
                                         Console.WriteLine("you knife the guy allowing yourself to scape, but you lost your knife");
+                                        Knife = true;
                                     }
-
+                                    Console.WriteLine("lucklily you find a door and you enter immediately and the door automatically closes behind you");
+                                    Console.WriteLine("press anything to continue");
+                                    Console.ReadKey(true);
+                                    Console.Clear();
+                                    input = "applepie";
+                                    break;
                                 }
-                                else if (input == "find a spot t ")
+                                else if (input == "hide")
                                 {
-
+                                    break;
                                 }
+                                else if (input == "throw some boxes")
+                                {
+                                    Console.WriteLine("he wasant able to reach you");
+                                }
+                                else
+                                {
+                                    Console.WriteLine("not an option");
+                                }
+                        if (lifeline = false)
+                        {
+                            break;
+                        }
+                         
                             }
+                        if (input == "applepie")
+                        {
+                            break;
+                        }
                         }
                         else if (input == "flashlight" && light == false)
                         {
@@ -529,11 +563,15 @@ namespace Text_Adventure
                             Console.WriteLine("not an option");
                         }
                     }
+                    if (input == "applepie")
+                    {
+                        break ;
+                    }
                     //end of down part
                 }
                 else if (input == "sing")
                 {
-                   //this is for a secret ending
+                    //this is for a secret ending
                     Console.WriteLine("if you sing again you will suffer consequences...");
                     singer = false;
                     Console.Beep(400, 1000);
@@ -558,8 +596,8 @@ namespace Text_Adventure
                     Console.Clear();
                     break;
                     trueending(player1.Pname);
-                } 
-        static void trueending(string named)
+                }
+                static void trueending(string named)
                 {
                     Thread.Sleep(1000);
                     Console.Clear();
@@ -567,7 +605,7 @@ namespace Text_Adventure
                 }
 
             }
-        
+        Console.WriteLine("after some time exploring the room");
         }
     }
 }
