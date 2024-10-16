@@ -22,6 +22,7 @@ namespace Text_Adventure
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("copy and paste in case your answer is not going. or try all lower case");
             Lighttype lighttype = Lighttype.flashlight;
             Console.Title = "welcome to purgatory";
             int hp = 100;
@@ -316,7 +317,7 @@ namespace Text_Adventure
             while (true)
             {
                 input = Console.ReadLine();
-                if (input == "up")
+                if (input == "Up")
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("you decided to go up");
@@ -418,14 +419,19 @@ namespace Text_Adventure
                     Console.WriteLine("after some time walking, you hear steps...something is definately here");
                     Thread.Sleep(1000);
                     Console.WriteLine("what you wanna do?");
-                    Console.WriteLine("hide|keep walking");
-                    if (light == false)
-                    {
-                        Console.WriteLine("use flashlight");
-                    }
+                    //Console.WriteLine("hide|keep walking");
+                   // if (light == false)
+                   // {
+                    //    Console.WriteLine("use flashlight");
+                  //  }
                     while (true) //currently working on it 
                     {
-                        input = Console.ReadLine();
+                        Console.WriteLine("hide|keep walking");
+                        if (light == false)
+                        {
+                            Console.WriteLine("use flashlight");
+                        }
+                            input = Console.ReadLine();
                         if (input == "hide") //WORNK ON THIS FIRST
                         {
                             Console.WriteLine("you decided to hide");
@@ -443,12 +449,13 @@ namespace Text_Adventure
                             {
                                 Console.WriteLine("use flashlight");
                             }
-                            while (true)
+                            while (vgd == true)
                             {
                                 input = Console.ReadLine();
                                 if (input == "leave hideout")
                                 {
                                     input = "keep walking";
+                                    Console.WriteLine("you left your hideout");
                                     break;
                                 }
                                 else if (input == "keep hidden")
@@ -462,7 +469,11 @@ namespace Text_Adventure
                                         Console.WriteLine("use flashlight");
                                     }
                                     input = Console.ReadLine();
-                                    if (input == "leave hideout");
+                                    if (input == "leave hideout")
+                                    {
+                                        input = "keep walking";
+                                        ;
+                                    }
                                 }
                                 else if (input == "use flashlight" && light == false)
                                 {
@@ -533,6 +544,12 @@ namespace Text_Adventure
                                 else if (input == "throw some boxes")
                                 {
                                     Console.WriteLine("he wasant able to reach you");
+                                    Console.WriteLine("lucklily you find a door and you enter immediately and the door automatically closes behind you");
+                                    Console.WriteLine("press anything to continue");
+                                    Console.ReadKey(true);
+                                    Console.Clear();
+                                    input = "applepie";
+                                    break;
                                 }
                                 else
                                 {
@@ -605,7 +622,7 @@ namespace Text_Adventure
                 }
 
             }
-        Console.WriteLine("after some time exploring the room");
+        Console.WriteLine("thats all i have for now, sorry ");
         }
     }
 }
