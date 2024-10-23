@@ -1,4 +1,5 @@
-﻿using System.Runtime.InteropServices;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Runtime.InteropServices;
 using System.Threading;
 
 namespace Text_Adventure
@@ -472,7 +473,14 @@ namespace Text_Adventure
                                     if (input == "leave hideout")
                                     {
                                         input = "keep walking";
-                                        ;
+                                        Console.WriteLine("you left hideout");
+                                        Console.WriteLine("what you wannda do?");
+                                        Console.WriteLine("hide || keep walking");
+                                        if (light = false)
+                                        {
+                                            Console.WriteLine("use flashlight");
+                                        }
+                                        break;
                                     }
                                 }
                                 else if (input == "use flashlight" && light == false)
@@ -586,6 +594,12 @@ namespace Text_Adventure
                     }
                     //end of down part
                 }
+                else if (input == "sing" && singer == false)
+                {
+                    hp = 0;
+                    Console.WriteLine("i warned you");
+                }
+
                 else if (input == "sing")
                 {
                     //this is for a secret ending
@@ -611,8 +625,8 @@ namespace Text_Adventure
                     Console.ResetColor();
                     Console.ReadKey(true);
                     Console.Clear();
-                    break;
                     trueending(player1.Pname);
+                    break;
                 }
                 static void trueending(string named)
                 {
@@ -622,7 +636,19 @@ namespace Text_Adventure
                 }
 
             }
-        Console.WriteLine("thats all i have for now, sorry ");
+        if (input == "applepie")
+            {
+                Console.WriteLine("you are tired and hurt, somehow you scaped");
+                Console.WriteLine("");
+            }
+            Thread.BeginCriticalRegion();
+            Console.Beep(100, 1000);
+            Thread.EndCriticalRegion();
+            Thread.SpinWait(1000);
+            Thread.Yield();
+            Thread.EndThreadAffinity();
+            Thread.Sleep(1000);
+
         }
     }
 }
