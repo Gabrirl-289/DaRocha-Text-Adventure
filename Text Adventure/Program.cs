@@ -38,6 +38,10 @@ namespace Text_Adventure
             nameOfVariable = 16;
             float lessinflation = (float)inflation;
             float thatscrazy = System.Convert.ToSingle(inflation);
+            double lessinflation2 = Convert.ToDouble(nameOfVariable);
+            int passengerAge = 28 + 1;
+            double passengerAgeDouble = Convert.ToDouble(passengerAge);
+            double passengerAgeDouble2 = (double)passengerAgeDouble;
             int thatscrazyagain = Convert.ToInt32(inflation);
             string myname = "what is your name?";
             bool Handcuff = true;
