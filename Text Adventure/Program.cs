@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Runtime.InteropServices;
 using System.Threading;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Text_Adventure
 {
@@ -39,9 +40,50 @@ namespace Text_Adventure
             float lessinflation = (float)inflation;
             float thatscrazy = System.Convert.ToSingle(inflation);
             double lessinflation2 = Convert.ToDouble(nameOfVariable);
+            decimal revenue = 390819.28m; //decimal numbers, 28 max
+            //for cource  
             int passengerAge = 28 + 1;
+            passengerAge += 1;
             double passengerAgeDouble = Convert.ToDouble(passengerAge);
             double passengerAgeDouble2 = (double)passengerAgeDouble;
+            string passengerAgeString = Convert.ToString(passengerAge);
+
+            // Your Age
+            int userAge = 17;
+            // Length of years on Jupiter (in Earth years)
+
+            double jupiterYears = 11.86;
+            // Age on Jupiter
+            int jupiterAge = Convert.ToInt32(jupiterYears / userAge);
+
+            int steps = 2;
+            steps++;
+            steps--;
+
+            int students = 18;
+            // Number of students in a group
+            int groupSize = 3;
+            //prints the remaining amount
+            Console.WriteLine(students % groupSize);
+
+            //square root
+            int numberOne = 12932;
+            int numberTwo = -2828472;
+            //rounds and square root number one value
+            double numberOneSqrt = Math.Floor(Math.Sqrt(numberOne));
+           //abs will remove the negative
+            double numberTwoSqrt = Math.Floor(Math.Sqrt(Math.Abs(numberTwo)));
+            //will show the smallest number between the two
+            Console.WriteLine(Math.Min(numberOneSqrt, numberTwoSqrt));
+            /*Math.Abs() — Finds the absolute value of a number. Example: Math.Abs(-5) returns 5.
+            Math.Sqrt() — Finds the square root of a given double. Example: Math.Sqrt(16) returns 4.
+            Math.Floor() — Rounds the given double or decimal down to the nearest whole number. Example: Math.Floor(8.65) returns 8.
+            Math.Ceiling() — The counterpart of Math.Floor(), rounds a given double or decimal up to the nearest whole number. Example: Math.Ceiling(8.65) returns 9.
+            Math.Min() — Returns the smaller of two numbers of the same type. Example: Math.Min(39, 12) returns 12.
+            Math.Max() — The counterpart of Math.Min(), returns the larger of two numbers of the same type. Example: Math.Max(39, 12) returns 39.
+            */
+            //for cource
+
             int thatscrazyagain = Convert.ToInt32(inflation);
             string myname = "what is your name?";
             bool Handcuff = true;
