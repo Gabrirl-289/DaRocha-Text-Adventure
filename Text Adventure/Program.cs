@@ -82,6 +82,11 @@ namespace Text_Adventure
             Math.Min() — Returns the smaller of two numbers of the same type. Example: Math.Min(39, 12) returns 12.
             Math.Max() — The counterpart of Math.Min(), returns the larger of two numbers of the same type. Example: Math.Max(39, 12) returns 39.
             */
+
+
+            // for make a new sentence below, \n
+            //string firstSpeech = "\"My dear Mr. Bennet,\" said his lady to him one day, \"have you heard that Netherfield Park is let at last?\" ";
+
             //for cource
 
             int thatscrazyagain = Convert.ToInt32(inflation);
