@@ -41,7 +41,9 @@ namespace Text_Adventure
             float thatscrazy = System.Convert.ToSingle(inflation);
             double lessinflation2 = Convert.ToDouble(nameOfVariable);
             decimal revenue = 390819.28m; //decimal numbers, 28 max
+            
             //for cource  
+
             int passengerAge = 28 + 1;
             passengerAge += 1;
             double passengerAgeDouble = Convert.ToDouble(passengerAge);
@@ -71,7 +73,7 @@ namespace Text_Adventure
             int numberTwo = -2828472;
             //rounds and square root number one value
             double numberOneSqrt = Math.Floor(Math.Sqrt(numberOne));
-           //abs will remove the negative
+            //abs will remove the negative
             double numberTwoSqrt = Math.Floor(Math.Sqrt(Math.Abs(numberTwo)));
             //will show the smallest number between the two
             Console.WriteLine(Math.Min(numberOneSqrt, numberTwoSqrt));
@@ -83,10 +85,68 @@ namespace Text_Adventure
             Math.Max() — The counterpart of Math.Min(), returns the larger of two numbers of the same type. Example: Math.Max(39, 12) returns 39.
             */
 
+            //string beginning = "hello";
+            //string middle = "hey";
+            //string end = "bye";
+            //// Concatenate the string and the variables
+            //string story = beginning + " " + middle + " " + end;
+
+
+
 
             // for make a new sentence below, \n
-            //string firstSpeech = "\"My dear Mr. Bennet,\" said his lady to him one day, \"have you heard that Netherfield Park is let at last?\" ";
+            string firstSpeech = "\"My dear Mr. Bennet,\" said his lady to him one day, \"have you heard that Netherfield Park is let at last?\" ";
+            string firstSentence = "It is a truth universally acknowledged, that a single man in possession of a good fortune must be in want of a wife.";
 
+            Console.WriteLine(firstSentence);
+            Console.WriteLine("\n"); //make an empty line
+            Console.WriteLine(firstSpeech);
+            //end of \n notes
+
+           //
+            string yourFaveMusician = "David Bowie";
+            string myFaveMusician = "Solange";
+            //allows for not requiring to write dots separately
+            Console.WriteLine($"Your favorite musician is {yourFaveMusician} and mine is {myFaveMusician}.");
+
+            string beginning = "Once upon a time,";
+            string middle = "The kid climbed a tree";
+            string end = "Everyone lived happily ever after.";
+
+            // Interpolate the string and the variables
+            string story = $" {beginning} {middle} {end}";
+
+            //
+
+            //checks the length of the string
+            Console.WriteLine(story.Length);
+            //Check if the letter ? exists in the string
+            int passwordCheck = story.IndexOf("?");
+            //
+            
+            //removes everyword except the ones u told not to
+            string plantName = "Cactaceae, Cactus";
+            int charPosition = plantName.IndexOf("Cactus"); // Returns 11
+            string commonName = plantName.Substring(charPosition); // Returns Cactus
+            //
+            string startStrand = "ATGCGATGAGCTTAC";
+            int tga = startStrand.IndexOf("TGA");
+            int startPoint = 0;
+            int length = tga + 3;
+            string dna = startStrand.Substring(startPoint, length);
+            Console.WriteLine(dna[3]);
+
+            //Substring ends here
+            
+            //to upper and to lower
+            string shouting = "I'm not shouting, you're shouting".ToUpper();
+            Console.WriteLine(shouting);
+            // Prints I'M NOT SHOUTING, YOU'RE SHOUTING.
+            string script = "Close on a portrait of the HANDSOME PRINCE -- as the BEAST'S giant paw slashes it.";
+            int charPostion = script.IndexOf("Close");
+            int lengh = "Close on".Length;
+            string cameraDirections = script.Substring(charPostion, lengh).ToUpper();
+            cameraDirections = cameraDirections.ToLower();
             //for cource
 
             int thatscrazyagain = Convert.ToInt32(inflation);
@@ -97,7 +157,7 @@ namespace Text_Adventure
             bool light = true;
             bool key = true;
             string[] somelight;
-            somelight = new string[] { "lights", "Light", "light", "flashlight"};
+            somelight = new string[] { "lights", "Light", "light", "flashlight" };
             string currentItem = "";
             bool doorknowledge = true;
             bool lifeline = true;
@@ -472,10 +532,10 @@ namespace Text_Adventure
                     Thread.Sleep(1000);
                     Console.WriteLine("what you wanna do?");
                     //Console.WriteLine("hide|keep walking");
-                   // if (light == false)
-                   // {
+                    // if (light == false)
+                    // {
                     //    Console.WriteLine("use flashlight");
-                  //  }
+                    //  }
                     while (true) //currently working on it 
                     {
                         Console.WriteLine("hide|keep walking");
@@ -483,7 +543,7 @@ namespace Text_Adventure
                         {
                             Console.WriteLine("use flashlight");
                         }
-                            input = Console.ReadLine();
+                        input = Console.ReadLine();
                         if (input == "hide") //WORNK ON THIS FIRST
                         {
                             Console.WriteLine("you decided to hide");
@@ -515,7 +575,7 @@ namespace Text_Adventure
                                     Console.WriteLine("nothing happens, you just stay hidden");
                                     Console.WriteLine("what you wanna do now?");
                                     Console.WriteLine("leave hideout || keep hidden");
-                                    
+
                                     if (light == false)
                                     {
                                         Console.WriteLine("use flashlight");
@@ -571,14 +631,15 @@ namespace Text_Adventure
                                 if (input == "keep running")
                                 {
                                     Console.WriteLine("he reaches you");
-                                    
+
                                     if (Knife == true)
                                     {
                                         Console.WriteLine("he hits you");
                                         hp -= 33;
                                         Console.WriteLine("curret hp = " + hp);
                                         Console.WriteLine("lucklily you find a door and you enter immediately and the door autom");
-                                        if (hp <= 0) {  
+                                        if (hp <= 0)
+                                        {
                                             lifeline = false;
                                             break;
                                         }
@@ -614,16 +675,16 @@ namespace Text_Adventure
                                 {
                                     Console.WriteLine("not an option");
                                 }
-                        if (lifeline = false)
-                        {
-                            break;
-                        }
-                         
+                                if (lifeline = false)
+                                {
+                                    break;
+                                }
+
                             }
-                        if (input == "applepie")
-                        {
-                            break;
-                        }
+                            if (input == "applepie")
+                            {
+                                break;
+                            }
                         }
                         else if (input == "flashlight" && light == false)
                         {
@@ -641,7 +702,7 @@ namespace Text_Adventure
                     }
                     if (input == "applepie")
                     {
-                        break ;
+                        break;
                     }
                     //end of down part
                 }
@@ -687,7 +748,7 @@ namespace Text_Adventure
                 }
 
             }
-        if (input == "applepie")
+            if (input == "applepie")
             {
                 Console.WriteLine("you are tired and hurt, somehow you scaped");
                 Console.WriteLine("");
