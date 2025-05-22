@@ -147,6 +147,16 @@ namespace Text_Adventure
             int lengh = "Close on".Length;
             string cameraDirections = script.Substring(charPostion, lengh).ToUpper();
             cameraDirections = cameraDirections.ToLower();
+
+            //true and false different methods
+            bool answer = (9 < 3) || (100 < 45); // evaluates to false
+            bool another = ((3439 > 40) && (1 < 3)) || answer; // evaluates to true
+            bool peanutButter = true;
+            bool jelly = true;
+            bool sandwich = (peanutButter && jelly); // evaluates to true
+
+
+
             //for cource
 
             int thatscrazyagain = Convert.ToInt32(inflation);
