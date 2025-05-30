@@ -155,11 +155,138 @@ namespace Text_Adventure
             bool jelly = true;
             bool sandwich = (peanutButter && jelly); // evaluates to true
 
+            //switches! 
+            int speed = 100;
+
+            switch (speed)
+            {
+                case < 25:
+                    // Executes if the value of speed is less than 25
+                    Console.WriteLine("Going slowly");
+                    break;
+                case 25:
+                    // Executes if the value of speed is equal to 25
+                    Console.WriteLine("Going at correct speed");
+                    break;
+                case < 30: //case is basically if statement
+                    // Executes if the value of speed is between 25 and 30
+                    Console.WriteLine("Going slightly too fast");
+                    break;
+                default: //default is basically else for if statement
+                    // The speed must be over 30 due to the above conditions
+                    Console.WriteLine("Going much too fast");
+                    break;
+            }
+            double ph = 4.5;
+            switch (ph)
+            {
+                case <= 3:
+                    Console.WriteLine("Very Acidic");
+                    break;
+                case < 7:
+                    Console.WriteLine("Acidic");
+                    break;
+                case >= 11:
+                    Console.WriteLine("Very Basic");
+                    break;
+                case > 7:
+                    Console.WriteLine("Basic");
+                    break;
+                default:
+                    Console.WriteLine("Neutral");
+                    break;
+            }
+            //if-else statement
+            string color = "green";
+            string movement = (color == "green") ? "go" : "stop";
+            Console.WriteLine(movement);
+
+            double pepperLength = 4;
+
+            string message = (pepperLength >= 3.5) ? "ready!" : "wait a little longer";
+
+            Console.WriteLine(message);
+
+            //Array studies!!!
+            // These arrays store ints, strings, and doubles, respectively
+            int[] x;
+            string[] s;
+            double[] d;
+
+            string[] summerStrut;
+
+            summerStrut = new string[] { "Juice", "Missing U", "Raspberry Beret", "New York Groove", "Make Me Feel", "Rebel Rebel", "Despacito", "Los Angeles" };
+
+            int[] ratings = { 5, 4, 4, 3, 3, 5, 5, 4 };
+            summerStrut[7] = "Chris";
+            Console.WriteLine($"You rated the song{summerStrut[1]} {ratings[1]} stars");
+            //IndexOf() works best when you have a specific value and need to know where it’s located in the array (or if it even exists!).
+            int threeRating = Array.IndexOf(ratings, 3);
+            Console.WriteLine($"Song number {threeRating + 1} is rated three stars.");
+            //Array.Reverse() method returns the array with the original elements in reverse order.
+            Array.Reverse(summerStrut);
+            string newFirst = summerStrut[0];
+            string newLast = summerStrut[7];
+            Console.WriteLine($"The first song in the playlist is now {newFirst}.");
+            Console.WriteLine($"The last song in the playlist is now {newLast}.");
+
+            //sorts an array. If it is an array of integer values, it will sort them into ascending values (lowest to highest). 
+            Array.Sort(summerStrut);
+            string firstSong = summerStrut[0];
+            string lastSong = summerStrut[7];
+            Console.WriteLine($"The first song in the playlist is now {firstSong}.");
+            Console.WriteLine($"The last song in the playlist is now {lastSong}.");
 
 
-            //for cource
+            // Game hasn't started
+            bool startGame = false;
 
-            int thatscrazyagain = Convert.ToInt32(inflation);
+            do
+            {
+                // do this at least once 
+                // continue as long as the player hasn't started the game
+                //ShowStartScreen();
+            } while (!startGame);
+            // example of happening once
+
+                bool buttonClick = true;
+
+                do
+                {
+                    Console.WriteLine("Alarm Ringing");
+                    buttonClick = true;
+                } while (!buttonClick);
+
+                Console.WriteLine("Time for a five minute break");
+            // now For loops
+            for (int i = 1; i <= 16; i++)
+            {
+                Console.WriteLine($"Week {i}");
+                Console.WriteLine("Announcements: \n \n \n ");
+                Console.WriteLine("Report Backs: \n \n \n");
+                Console.WriteLine("Discussion Items: \n \n \n");
+            }
+            // basically it prints every phrase in the todo and will stop printing when theres none else to print in the foreach list
+                string[] todo = { "respond to email", "make wireframe", "program feature", "fix bugs" };
+
+                foreach (string task in todo)
+                {
+                    Console.WriteLine($"[] {task}");
+                }
+                //it will print every word on the array list 
+            string[] websites = { "twitter", "facebook", "gmail" };
+            int counter = 0;
+
+            while (counter < websites.Length)
+            {
+                Console.WriteLine(websites[counter]);
+                counter++;
+            }
+
+
+                //for cource
+
+                int thatscrazyagain = Convert.ToInt32(inflation);
             string myname = "what is your name?";
             bool Handcuff = true;
             bool PrisonDoor = true;
@@ -772,5 +899,11 @@ namespace Text_Adventure
             Thread.Sleep(1000);
 
         }
+
     }
 }
+
+
+
+//If you're reading this I am hiding under Dereks desk. I will be untieing his shoes for the rest of his teaching career down here.
+//No one will be able to stop me. Every time he wears flip flops I will cut the strings with my scissors. There is no escape Derek.
